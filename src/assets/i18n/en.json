@@ -1,0 +1,29 @@
+{
+    "TITLE": "TITLE OF EXAMPLE",
+    "MAIN": {
+        "TITLE": "My Application",
+        "SECTIONS": {
+            "BY_SEARCH": {
+                "NAME": "By search"
+            },
+            "FAVORITES": {
+                "NAME": "Favorites"
+            }
+        }
+    },
+    "SEARCH": {
+        "TITLE":{
+            "LABEL": "Title",
+            "PLACEHOLDER": "Type an title ..."
+        },
+        "YEAR": {
+            "LABEL": "Year",
+            "PLACEHOLDER": "Type an year ..."
+        },
+        "PLOT":{
+            "LABEL": "Plot",
+            "PLACEHOLDER": "Type an title ..."
+        },
+        "LABEL": "SEARCH"
+    }
+}
