@@ -1,4 +1,4 @@
-<mat-card class="example-card">
+<mat-card class="custom-card">
   <mat-card-header>
     <mat-card-title-group>
       <mat-card-title>
@@ -7,7 +7,9 @@
             {{ data.Title }}
           </h2>
 
-          @if(showFavorite) {
+          @if(showRemove) {
+          <fa-icon (click)="remove.emit()" [icon]="'trash'"></fa-icon>
+          } @if(showFavorite) {
           <app-favorite
             [active]="data.favorite"
             (click)="updateMovie.emit()"

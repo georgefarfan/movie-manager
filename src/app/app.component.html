@@ -1,19 +1,21 @@
-<mat-toolbar>
-  <span class="title">{{ "MAIN.TITLE" | translate }}</span>
-  <nav>
-    <ul class="d-flex">
-      <li class="mr-3">
-        <a routerLink="dashboard">{{
-          "MAIN.SECTIONS.BY_SEARCH.NAME" | translate
-        }}</a>
-      </li>
-      <li>
-        <a routerLink="favorites">{{
-          "MAIN.SECTIONS.FAVORITES.NAME" | translate
-        }}</a>
-      </li>
-    </ul>
-  </nav>
-</mat-toolbar>
+<div class="container-fluid">
+  <mat-toolbar>
+    <span class="title">{{ "MAIN.TITLE" | translate }}</span>
+    <nav>
+      <ul class="d-flex">
+        <li class="mr-3">
+          <a routerLink="dashboard">{{
+            "MAIN.SECTIONS.BY_SEARCH.NAME" | translate
+          }}</a>
+        </li>
+        <li>
+          <a routerLink="favorites">{{
+            "MAIN.SECTIONS.FAVORITES.NAME" | translate
+          }}</a>
+        </li>
+      </ul>
+    </nav>
+  </mat-toolbar>
 
-<router-outlet></router-outlet>
+  <router-outlet></router-outlet>
+</div>

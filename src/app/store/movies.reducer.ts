@@ -5,7 +5,6 @@ import {
   setParamsMovies,
   successMovies,
   successUpdateFavorites,
-  updateFavorite,
   updateMovie,
 } from './movies.actions';
 import { Movie } from '../shared/models/movie';
@@ -34,29 +33,6 @@ export const moviesReducer = createReducer(
       favorites: [...state.favorites, params],
     };
   }),
-
-  on(deleteFavorite, (state, { params }) => {
-    return {
-      ...state,
-      favorites: state.favorites.filter((m) => m.imdbID !== params.imdbID),
-    };
-  }),
-
-  /**
-   * on(updateFavorite, (state, { data }) => {
-    const index = state.favorites.findIndex(
-      (item) => item.imdbID === data.imdbID
-    );
-
-    const updatedItems = [...state.favorites];
-    updatedItems[index] = data;
-
-    return {
-      ...state,
-      favorites: updatedItems,
-    };
-  }),
-   */
 
   on(successUpdateFavorites, (state, { data }) => {
     return {

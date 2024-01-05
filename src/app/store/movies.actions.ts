@@ -37,7 +37,7 @@ export const addFavorite = createAction(
 
 export const deleteFavorite = createAction(
   '[Favorites] delete',
-  props<{ params: Favorite }>()
+  props<{ data: Favorite }>()
 );
 
 export const updateFavorite = createAction(

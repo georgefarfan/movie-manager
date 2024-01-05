@@ -9,10 +9,21 @@ import { selectFavorites } from '../store/movies.selector';
 import { CardItemComponent } from '../card-item/card-item.component';
 import { FiltersComponent } from '../filters/filters.component';
 import { FilterMode } from '../filters/filters';
-import { loadFavorites, updateFavorite } from '../store/movies.actions';
+import {
+  deleteFavorite,
+  loadFavorites,
+  updateFavorite,
+} from '../store/movies.actions';
 import { MatDialog } from '@angular/material/dialog';
 import { FavoriteDialogComponent } from '../favorite-dialog/favorite-dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
+
+const FAVORITE_FILTERS = [
+  FilterMode.ID,
+  FilterMode.TITLE,
+  FilterMode.MOVIE_TYPE,
+  FilterMode.YEAR,
+];
 
 @Component({
   selector: 'app-favorites',
@@ -33,6 +44,8 @@ import { TranslateModule } from '@ngx-translate/core';
       <app-card-item
         class="cursor-pointer"
         [data]="favorite"
+        [showRemove]="true"
+        (remove)="onRemove(favorite)"
         (click)="openDialog(favorite)"
       ></app-card-item>
       } @empty {
@@ -45,12 +58,7 @@ import { TranslateModule } from '@ngx-translate/core';
 export class FavoritesComponent implements OnInit {
   store = inject(Store);
   favorites$: Observable<Favorite[]>;
-  filters = [
-    FilterMode.ID,
-    FilterMode.TITLE,
-    FilterMode.MOVIE_TYPE,
-    FilterMode.YEAR,
-  ];
+  filters = FAVORITE_FILTERS;
 
   constructor(public dialog: MatDialog) {}
 
@@ -62,6 +70,14 @@ export class FavoritesComponent implements OnInit {
     this.store.dispatch(
       loadFavorites({
         data: paramsKey,
+      })
+    );
+  }
+
+  onRemove(favorite: Favorite): void {
+    this.store.dispatch(
+      deleteFavorite({
+        data: favorite,
       })
     );
   }

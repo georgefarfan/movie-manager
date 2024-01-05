@@ -1,5 +1,8 @@
 <div class="search-container mt-4">
-  <form [formGroup]="form">
+  <form
+    [formGroup]="form"
+    class="d-flex align-items-center justify-content-between"
+  >
     @for (filter of filters; track filter.key) { @if (filter.inputType ===
     'input') {
     <mat-form-field>
@@ -25,9 +28,7 @@
         }
       </mat-select>
     </mat-form-field>
-    } } @empty {
-    <p>No results yet!</p>
-    }
+    }}
 
     <button mat-raised-button color="primary" (click)="search.emit(paramsKey)">
       {{ "SEARCH.LABEL" | translate }}

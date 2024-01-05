@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { exhaustMap, map, catchError, EMPTY, withLatestFrom } from 'rxjs';
+import {
+  exhaustMap,
+  map,
+  catchError,
+  EMPTY,
+  withLatestFrom,
+  Observable,
+} from 'rxjs';
 import * as actions from './movies.actions';
 import { AppState } from './movies.selector';
 import { Store } from '@ngrx/store';
@@ -53,23 +60,45 @@ export class MoviesEffects {
     )
   );
 
+  deleteFavorite$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.deleteFavorite.type),
+      withLatestFrom(this.store$),
+      map(([params, state]) => {
+        return {
+          favorite: (params as any).data as Favorite,
+          currentFavorites: state.movies.favorites,
+        };
+      }),
+      exhaustMap(({ favorite, currentFavorites }) => {
+        const favorites = currentFavorites.filter(
+          (f) => f.imdbID !== favorite.imdbID
+        );
+        this.sessionStorage.setFavorites(favorites);
+        return this.sessionStorage.getFavorites().pipe(
+          map((data) => {
+            return actions.successUpdateFavorites({
+              data,
+            });
+          })
+        );
+      })
+    )
+  );
+
   updateFavorite$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.updateFavorite.type),
       withLatestFrom(this.store$),
-      exhaustMap(([params, state]) => {
-        const favorite = (params as any).data as Favorite;
-
-        const favorites = state.movies.favorites.reduce(
-          (accu: Favorite[], curr: Favorite) => {
-            let f = curr;
-            if (curr.imdbID === favorite.imdbID) {
-              f = favorite;
-            }
-            accu.push(f);
-            return accu;
-          },
-          []
+      map(([params, state]) => {
+        return {
+          favorite: (params as any).data as Favorite,
+          currentFavorites: state.movies.favorites,
+        };
+      }),
+      exhaustMap(({ favorite, currentFavorites }) => {
+        const favorites = currentFavorites.filter(
+          (f) => f.imdbID !== favorite.imdbID
         );
 
         this.sessionStorage.setFavorites(favorites);
@@ -87,6 +116,7 @@ export class MoviesEffects {
   loadFavorites$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.loadFavorites.type),
+
       exhaustMap((params: any) => {
         return this.sessionStorage.getFavorites().pipe(
           map((result) => {
@@ -120,4 +150,30 @@ export class MoviesEffects {
     private store$: Store<AppState>,
     private sessionStorage: SessionStorageService
   ) {}
+
+  private actionFavorite(favorites: Favorite[]): Observable<any> {
+    this.sessionStorage.setFavorites(favorites);
+    return this.sessionStorage.getFavorites().pipe(
+      map((data) => {
+        return actions.successUpdateFavorites({
+          data,
+        });
+      })
+    );
+  }
+
+  private deleteMapping(favorites: Favorite[], favorite: Favorite): Favorite[] {
+    return favorites.filter((f) => f.imdbID !== favorite.imdbID);
+  }
+
+  private updateMapping(favorites: Favorite[], favorite: Favorite): Favorite[] {
+    return favorites.reduce((accu: Favorite[], curr: Favorite) => {
+      let f = curr;
+      if (curr.imdbID === favorite.imdbID) {
+        f = favorite;
+      }
+      accu.push(f);
+      return accu;
+    }, []);
+  }
 }
