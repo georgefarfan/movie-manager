@@ -4,6 +4,7 @@ export interface Movie {
   imdbID: string;
   Type: string;
   Poster: string;
+  favorite: boolean;
 }
 
 export interface MovieResult {

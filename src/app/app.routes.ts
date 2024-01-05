@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
-import { PageNotFoundComponent } from './components/page-not-found/page-not-found.component';
-import { FavoritesComponent } from './components/favorites/favorites.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { FavoritesComponent } from './favorites/favorites.component';
 
 export const routes: Routes = [
   {

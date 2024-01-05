@@ -1,4 +1,4 @@
-import { ApplicationConfig, isDevMode } from '@angular/core';
+import { APP_INITIALIZER, ApplicationConfig, isDevMode } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
@@ -11,6 +11,7 @@ import { provideEffects } from '@ngrx/effects';
 import { provideStoreDevtools } from '@ngrx/store-devtools';
 import { MoviesEffects } from './store/movies.effects';
 import { moviesReducer } from './store/movies.reducer';
+import { SessionStorageService } from './shared/core/session-storage.service';
 
 // required for AoT
 export function HttpLoaderFactory(http: HttpClient) {
@@ -23,6 +24,13 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     provideAnimations(),
     provideHttpClient(),
+    {
+      provide: APP_INITIALIZER,
+      useFactory: (authService: SessionStorageService) => () =>
+        authService.initialize(),
+      multi: true,
+      deps: [SessionStorageService],
+    },
     TranslateModule.forRoot({
       defaultLanguage: 'en',
       loader: {

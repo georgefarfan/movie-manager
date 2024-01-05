@@ -13,8 +13,8 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { TranslateModule } from '@ngx-translate/core';
 import { Store } from '@ngrx/store';
-import { loadMovies, setParamsMovies } from '../../store/movies.actions';
-import { FilterType } from '../../shared/models/filters';
+import { loadMovies, setParamsMovies } from '../store/movies.actions';
+import { FilterType } from '../shared/models/filters';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 const OPTIONS = [

@@ -1,21 +1,23 @@
-@if (movies$ | async; as movies) { @for (movie of movies; track movie.imdbID) {
 <mat-card class="example-card">
   <mat-card-header>
     <mat-card-title-group>
       <mat-card-title>
         <div class="d-flex align-items-center">
           <h2 class="mr-2">
-            {{ movie.Title }}
+            {{ data.Title }}
           </h2>
-          <app-favorite></app-favorite>
+
+          @if(showFavorite) {
+          <app-favorite
+            [active]="data.favorite"
+            (click)="updateMovie.emit()"
+          ></app-favorite>
+          }
         </div>
       </mat-card-title>
-      <mat-card-subtitle>{{ movie.Title }} {{ movie.Year }}</mat-card-subtitle>
-      <img mat-card-sm-image [src]="movie.Poster" />
+      <mat-card-subtitle>{{ data.Title }} {{ data.Year }}</mat-card-subtitle>
+      <img mat-card-sm-image [src]="data.Poster" />
     </mat-card-title-group>
   </mat-card-header>
   <mat-card-content> </mat-card-content>
 </mat-card>
-} @empty {
-<p>No results yet!</p>
-} }

@@ -1,18 +1,12 @@
-import {
-  Component,
-  WritableSignal,
-  effect,
-  inject,
-  signal,
-} from '@angular/core';
+import { Component, WritableSignal, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, RouterOutlet } from '@angular/router';
 import { FormsModule } from '@angular/forms';
-import { MoviesService } from './services/movies/movies.service';
 import { TranslateModule } from '@ngx-translate/core';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { MoviesService } from './shared/services/movies/movies.service';
 
 @Component({
   selector: 'app-root',
