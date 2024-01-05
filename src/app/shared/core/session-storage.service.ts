@@ -13,13 +13,21 @@ export class SessionStorageService {
   }
 
   initialize(): void {
-    this.store.dispatch(loadFavorites());
+    this.store.dispatch(
+      loadFavorites({
+        data: null,
+      })
+    );
   }
 
   getFavorites(): Observable<Favorite[]> {
-    return localStorage && localStorage['favorites']
-      ? of(JSON.parse(localStorage['favorites']))
-      : of([]);
+    try {
+      return localStorage && localStorage['favorites']
+        ? of(JSON.parse(localStorage['favorites']))
+        : of([]);
+    } catch (error) {
+      return of([]);
+    }
   }
 
   setFavorites(data: Favorite[]): void {

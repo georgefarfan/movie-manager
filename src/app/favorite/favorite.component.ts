@@ -12,7 +12,14 @@ import { MatCardModule } from '@angular/material/card';
   selector: 'app-favorite',
   standalone: true,
   imports: [FontAwesomeModule, CommonModule, MatCardModule, CardItemComponent],
-  templateUrl: './favorite.component.html',
+  template: `<fa-icon
+    [ngStyle]="{
+      color: active ? '#fbbc00' : '#bebebe',
+      cursor: 'pointer',
+      'font-size': '25px'
+    }"
+    [icon]="['fas', 'star']"
+  ></fa-icon> `,
 })
 export class FavoriteComponent implements OnInit {
   @Input()

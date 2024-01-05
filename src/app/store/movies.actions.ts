@@ -25,7 +25,10 @@ export const errorMovies = createAction('[Movies] Movies Loaded Error');
 
 // FAVORITES
 
-export const loadFavorites = createAction('[Favorite] Load');
+export const loadFavorites = createAction(
+  '[Favorite] Load',
+  props<{ data: any }>()
+);
 
 export const addFavorite = createAction(
   '[Favorites] add',

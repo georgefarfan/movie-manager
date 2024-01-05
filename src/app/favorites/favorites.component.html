@@ -1,6 +1,0 @@
-@if (favorites$ | async; as favorites) { @for (favorite of favorites; track
-favorite.imdbID) {
-<app-card-item [data]="favorite"></app-card-item>
-} @empty {
-<p>No results yet!</p>
-} }

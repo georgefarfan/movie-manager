@@ -1,1 +1,36 @@
-<p>filters works!</p>
+<div class="search-container mt-4">
+  <form [formGroup]="form">
+    @for (filter of filters; track filter.key) { @if (filter.inputType ===
+    'input') {
+    <mat-form-field>
+      <mat-label>{{ filter.keyTranslate.label | translate }}</mat-label>
+      <input
+        matInput
+        #input
+        maxlength="10"
+        [formControlName]="filter.key"
+        [placeholder]="filter.keyTranslate.placeholder | translate"
+      />
+    </mat-form-field>
+    } @if(filter.inputType === 'select') {
+    <mat-form-field>
+      <mat-label>{{ filter.keyTranslate.label | translate }}</mat-label>
+
+      <mat-select [formControlName]="filter.key">
+        @for (option of filter.options; track option.value; let idx = $index, e
+        = $even) {
+        <mat-option [value]="option.value">
+          {{ option.label }}
+        </mat-option>
+        }
+      </mat-select>
+    </mat-form-field>
+    } } @empty {
+    <p>No results yet!</p>
+    }
+
+    <button mat-raised-button color="primary" (click)="search.emit(paramsKey)">
+      {{ "SEARCH.LABEL" | translate }}
+    </button>
+  </form>
+</div>

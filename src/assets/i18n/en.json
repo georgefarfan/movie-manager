@@ -24,6 +24,16 @@
             "LABEL": "Plot",
             "PLACEHOLDER": "Type an title ..."
         },
+
+        "MOVIE_TYPE":{
+            "LABEL": "Type",
+            "PLACEHOLDER": "Type an movie type ..."
+        },
+
+        "BY_ID":{
+            "LABEL": "By id",
+            "PLACEHOLDER": "Type an id ..."
+        },
         "LABEL": "SEARCH"
     }
 }

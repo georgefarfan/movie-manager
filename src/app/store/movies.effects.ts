@@ -56,9 +56,24 @@ export class MoviesEffects {
   loadFavorites$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.loadFavorites.type),
-      exhaustMap(() => {
+      exhaustMap((params: any) => {
         return this.sessionStorage.getFavorites().pipe(
-          map((data) => {
+          map((result) => {
+            let data = result;
+
+            if (params.data) {
+              const keys = Object.keys(params.data);
+              data = data.reduce((accu: any[], curr: any) => {
+                const finded = keys.find((k) =>
+                  curr[k].includes(params.data[k])
+                );
+                if (finded) {
+                  accu.push(curr);
+                }
+                return accu;
+              }, []);
+            }
+
             return actions.successUpdateFavorites({
               data,
             });
