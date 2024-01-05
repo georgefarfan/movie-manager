@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>{{ "FAVORITES.UPDATE.TITLE" | translate }}</h1>
+<div mat-dialog-content>
+  <div>
+    <h4>{{ data.favorite.Title }}</h4>
+    <p class="f-bold">{{ data.favorite.Year }}</p>
+    <img [src]="data.favorite.Poster" alt="" width="60" height="60" />
+  </div>
+  <form [formGroup]="form">
+    <mat-form-field class="w-100">
+      <mat-label>{{ "SHARED.DESCRIPTION" | translate }}</mat-label>
+      <textarea matInput formControlName="description"></textarea>
+    </mat-form-field>
+
+    <div>
+      <app-star-rating [fControlName]="rating" [limit]="5"></app-star-rating>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close>{{ "SHARED.CANCEL" | translate }}</button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="action()">
+    {{ "SHARED.OK" | translate }}
+  </button>
+</div>

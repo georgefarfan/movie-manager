@@ -9,7 +9,10 @@ import { selectFavorites } from '../store/movies.selector';
 import { CardItemComponent } from '../card-item/card-item.component';
 import { FiltersComponent } from '../filters/filters.component';
 import { FilterMode } from '../filters/filters';
-import { loadFavorites } from '../store/movies.actions';
+import { loadFavorites, updateFavorite } from '../store/movies.actions';
+import { MatDialog } from '@angular/material/dialog';
+import { FavoriteDialogComponent } from '../favorite-dialog/favorite-dialog.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-favorites',
@@ -20,15 +23,20 @@ import { loadFavorites } from '../store/movies.actions';
     MatCardModule,
     CardItemComponent,
     FiltersComponent,
+    TranslateModule,
   ],
   template: ` <div>
     <app-filters [filters]="filters" (search)="search($event)"></app-filters>
     <div>
       @if (favorites$ | async; as favorites) { @for (favorite of favorites;
       track favorite.imdbID) {
-      <app-card-item [data]="favorite"></app-card-item>
+      <app-card-item
+        class="cursor-pointer"
+        [data]="favorite"
+        (click)="openDialog(favorite)"
+      ></app-card-item>
       } @empty {
-      <p>No results yet!</p>
+      <p>{{ 'MOVIES.NOT_DATA' | translate }}</p>
       } }
     </div>
   </div>`,
@@ -44,6 +52,8 @@ export class FavoritesComponent implements OnInit {
     FilterMode.YEAR,
   ];
 
+  constructor(public dialog: MatDialog) {}
+
   ngOnInit(): void {
     this.favorites$ = this.store.select(selectFavorites);
   }
@@ -54,5 +64,21 @@ export class FavoritesComponent implements OnInit {
         data: paramsKey,
       })
     );
+  }
+
+  openDialog(favorite: Favorite): void {
+    const dialog = this.dialog.open(FavoriteDialogComponent, {
+      width: '550px',
+      data: {
+        favorite,
+      },
+    });
+    dialog.afterClosed().subscribe((result) => {
+      this.store.dispatch(
+        updateFavorite({
+          data: result.data,
+        })
+      );
+    });
   }
 }

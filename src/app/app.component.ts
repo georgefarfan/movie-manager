@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MoviesService } from './shared/services/movies/movies.service';
+import { StarRatingConfigService, StarRatingModule } from 'angular-star-rating';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +22,11 @@ import { MoviesService } from './shared/services/movies/movies.service';
     MatButtonModule,
     MatIconModule,
     TranslateModule,
+    StarRatingModule,
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
+  providers: [StarRatingConfigService],
 })
 export class AppComponent {
   count: WritableSignal<number> = signal(0);

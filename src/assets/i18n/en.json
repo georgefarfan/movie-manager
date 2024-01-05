@@ -1,5 +1,10 @@
 {
     "TITLE": "TITLE OF EXAMPLE",
+    "SHARED": {
+        "OK": "Ok",
+        "CANCEL": "Cancel",
+        "DESCRIPTION": "Description"
+    },
     "MAIN": {
         "TITLE": "My Application",
         "SECTIONS": {
@@ -35,5 +40,13 @@
             "PLACEHOLDER": "Type an id ..."
         },
         "LABEL": "SEARCH"
+    },
+    "MOVIES": {
+        "NOT_DATA": "No results yet!"
+    },
+    "FAVORITES": {
+        "UPDATE": {
+            "TITLE": "Update favorite"
+        }
     }
 }

@@ -53,6 +53,37 @@ export class MoviesEffects {
     )
   );
 
+  updateFavorite$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(actions.updateFavorite.type),
+      withLatestFrom(this.store$),
+      exhaustMap(([params, state]) => {
+        const favorite = (params as any).data as Favorite;
+
+        const favorites = state.movies.favorites.reduce(
+          (accu: Favorite[], curr: Favorite) => {
+            let f = curr;
+            if (curr.imdbID === favorite.imdbID) {
+              f = favorite;
+            }
+            accu.push(f);
+            return accu;
+          },
+          []
+        );
+
+        this.sessionStorage.setFavorites(favorites);
+        return this.sessionStorage.getFavorites().pipe(
+          map((data) => {
+            return actions.successUpdateFavorites({
+              data,
+            });
+          })
+        );
+      })
+    )
+  );
+
   loadFavorites$ = createEffect(() =>
     this.actions$.pipe(
       ofType(actions.loadFavorites.type),

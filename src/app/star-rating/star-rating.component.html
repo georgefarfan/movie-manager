@@ -1,0 +1,11 @@
+<div class="star-rating">
+  @for (star of _limit; track star) {
+  <fa-icon
+    (click)="update(star)"
+    icon="star"
+    class="cursor-pointer"
+    [ngStyle]="{ color: star <= currentStar() ? '#FFC107' : '#acacac' }"
+  >
+  </fa-icon>
+  }
+</div>

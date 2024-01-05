@@ -42,7 +42,8 @@ export const moviesReducer = createReducer(
     };
   }),
 
-  on(updateFavorite, (state, { data }) => {
+  /**
+   * on(updateFavorite, (state, { data }) => {
     const index = state.favorites.findIndex(
       (item) => item.imdbID === data.imdbID
     );
@@ -55,6 +56,7 @@ export const moviesReducer = createReducer(
       favorites: updatedItems,
     };
   }),
+   */
 
   on(successUpdateFavorites, (state, { data }) => {
     return {

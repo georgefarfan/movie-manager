@@ -7,11 +7,12 @@ import { Movie } from '../shared/models/movie';
 import { selectMoviesData } from '../store/movies.selector';
 import { CardItemComponent } from '../card-item/card-item.component';
 import { updateMovie } from '../store/movies.actions';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-movies-list',
   standalone: true,
-  imports: [CommonModule, MatCardModule, CardItemComponent],
+  imports: [CommonModule, MatCardModule, CardItemComponent, TranslateModule],
   templateUrl: './movies-list.component.html',
   styleUrl: './movies-list.component.scss',
 })
