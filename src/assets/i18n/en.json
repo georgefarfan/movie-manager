@@ -3,7 +3,12 @@
     "SHARED": {
         "OK": "Ok",
         "CANCEL": "Cancel",
-        "DESCRIPTION": "Description"
+        "DESCRIPTION": "Description",
+        "CHANGE": "Cambiar",
+        "CLOSE": "Cerrar",
+        "SETTING": "Configurar",
+        "APPLY": "Aplicar",
+        "CLEAR": "Limpiar"
     },
     "MAIN": {
         "TITLE": "My Application",
@@ -39,7 +44,15 @@
             "LABEL": "By id",
             "PLACEHOLDER": "Type an id ..."
         },
-        "LABEL": "SEARCH"
+        "DESCRIPTION":{
+            "LABEL": "Description",
+            "PLACEHOLDER": "Type an description ..."
+        },
+        "RATING": {
+            "LABEL": "Rating",
+            "PLACEHOLDER": "Selec a range ..."
+        },        
+        "LABEL": "Search"
     },
     "MOVIES": {
         "NOT_DATA": "No results yet!",
@@ -56,6 +69,11 @@
             "ADD": "'{{x}}' added to favorites",
             "UPDATED": "'{{x}}' updated",
             "REMOVED": "'{{x}}' removed"
+        }
+    },
+    "FILTERS": {
+        "MANAGE": {
+            "TITLE": "Manage filters"
         }
     }
 }

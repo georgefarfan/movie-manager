@@ -118,7 +118,7 @@ export class MoviesEffects {
               const keys = Object.keys(params.data);
               data = data.reduce((accu: any[], curr: any) => {
                 const finded = keys.find((k) =>
-                  curr[k].includes(params.data[k])
+                  curr[k].toString().includes(params.data[k].toString())
                 );
                 if (finded) {
                   accu.push(curr);

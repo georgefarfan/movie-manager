@@ -1,0 +1,14 @@
+<div class="d-flex-col align-items-start">
+  <label>{{ config.label }}</label>
+  <div [formGroup]="range">
+    <mat-slider
+      [min]="config.min"
+      [max]="config.max"
+      [step]="config.step"
+      showTickMarks
+      discrete
+    >
+      <input matSliderThumb formControlName="value" />
+    </mat-slider>
+  </div>
+</div>

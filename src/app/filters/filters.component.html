@@ -1,37 +1,71 @@
-<div class="search-container mt-4">
-  <form
-    [formGroup]="form"
-    class="d-flex align-items-center justify-content-between"
-  >
-    @for (filter of filters; track filter.key) { @if (filter.inputType ===
-    'input') {
-    <mat-form-field>
-      <mat-label>{{ filter.keyTranslate.label | translate }}</mat-label>
-      <input
-        matInput
-        #input
-        maxlength="10"
-        [formControlName]="filter.key"
-        [placeholder]="filter.keyTranslate.placeholder | translate"
-      />
-    </mat-form-field>
-    } @if(filter.inputType === 'select') {
-    <mat-form-field>
-      <mat-label>{{ filter.keyTranslate.label | translate }}</mat-label>
+<div class="search-container mt-4 mb-4">
+  <form [formGroup]="form">
+    <div class="search-container__filters">
+      @for (filter of filters; track filter.key) {
 
-      <mat-select [formControlName]="filter.key">
-        @for (option of filter.options; track option.value; let idx = $index, e
-        = $even) {
-        <mat-option [value]="option.value">
-          {{ option.label }}
-        </mat-option>
-        }
-      </mat-select>
-    </mat-form-field>
-    }}
+      <div [formGroupName]="filter.key">
+        @if (form.get(filter.key)?.value.show ) { @if (filter.inputType ===
+        'input') {
 
-    <button mat-raised-button color="primary" (click)="search.emit(paramsKey)">
-      {{ "SEARCH.LABEL" | translate }}
-    </button>
+        <mat-form-field>
+          <mat-label>{{ filter.keyTranslate.label | translate }}</mat-label>
+          <input
+            matInput
+            #input
+            maxlength="10"
+            formControlName="value"
+            [placeholder]="filter.keyTranslate.placeholder | translate"
+          />
+        </mat-form-field>
+
+        } @if(filter.inputType === 'select') {
+
+        <mat-form-field>
+          <mat-label>{{ filter.keyTranslate.label | translate }}</mat-label>
+
+          <mat-select formControlName="value">
+            @for (option of filter.options; track option.value; let idx =
+            $index, e = $even) {
+            <mat-option [value]="option.value">
+              {{ option.label }}
+            </mat-option>
+            }
+          </mat-select>
+        </mat-form-field>
+
+        } @if( filter.inputType === 'slider'){
+        <app-input-range
+          [range]="rating"
+          [config]="{
+            min: 0,
+            max: 5,
+            step: 1,
+            label: 'Rating'
+          }"
+        ></app-input-range>
+        } @if( filter.inputType === 'datepicker'){
+        <app-year-picker [date]="year"></app-year-picker>
+        } }
+      </div>
+      }
+    </div>
+    <div class="d-flex justify-content-end">
+      <button
+        mat-flat-button
+        class="mr-1"
+        color="warn"
+        (click)="openSettingDialog()"
+      >
+        {{ "SHARED.SETTING" | translate }}
+      </button>
+
+      <button mat-flat-button color="warn" class="mr-1" (click)="clear()">
+        {{ "SHARED.CLEAR" | translate }}
+      </button>
+
+      <button mat-flat-button color="warn" (click)="search.emit(paramsKey)">
+        {{ "SEARCH.LABEL" | translate }}
+      </button>
+    </div>
   </form>
 </div>

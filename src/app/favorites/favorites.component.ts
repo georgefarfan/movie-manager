@@ -18,12 +18,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { FavoriteDialogComponent } from '../favorite-dialog/favorite-dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
 import { NoDataComponent } from '../no-data/no-data.component';
+import { YearPickerComponent } from '../date-picker/year-picker/year-picker.component';
 
 const FAVORITE_FILTERS = [
   FilterMode.ID,
   FilterMode.TITLE,
+  FilterMode.DESCRIPTION,
   FilterMode.MOVIE_TYPE,
   FilterMode.YEAR,
+  FilterMode.RATING,
 ];
 
 @Component({
@@ -37,9 +40,11 @@ const FAVORITE_FILTERS = [
     FiltersComponent,
     TranslateModule,
     NoDataComponent,
+    YearPickerComponent,
   ],
   template: ` <div>
     <app-filters [filters]="filters" (search)="search($event)"></app-filters>
+
     <div>
       @if (favorites$ | async; as favorites) { @for (favorite of favorites;
       track favorite.imdbID) {

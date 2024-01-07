@@ -5,6 +5,11 @@ export enum FilterType {
   SEARCH = 's',
   MOVIE_TYPE = 'type',
   ID = 'i',
+  RATING = 'rating',
+}
+
+export enum FilterSetting {
+  SHOW,
 }
 
 export enum FilterKey {
@@ -21,7 +26,10 @@ export enum FilterKey {
 export enum InputType {
   input = 'input',
   select = 'select',
+  slider = 'slider',
+  datePicker = 'datepicker',
 }
+
 export interface SelectOption {
   value: string;
   label: string;
@@ -39,6 +47,7 @@ export interface Filter {
   options?: SelectOption[];
   filterKey: FilterKey;
   required: boolean;
+  initialValue: boolean | string;
 }
 
 export const FilterMode = {
@@ -53,6 +62,7 @@ export const FilterMode = {
       placeholder: 'SEARCH.BY_ID.PLACEHOLDER',
     },
     required: false,
+    initialValue: '',
   } as Filter,
   TITLE: {
     type: 'string',
@@ -65,18 +75,49 @@ export const FilterMode = {
       placeholder: 'SEARCH.TITLE.PLACEHOLDER',
     },
     required: true,
+    initialValue: '',
   } as Filter,
+
+  DESCRIPTION: {
+    type: 'string',
+    label: 'description',
+    key: FilterType.SEARCH,
+    inputType: InputType.input,
+    filterKey: FilterKey.description,
+    keyTranslate: {
+      label: 'SEARCH.DESCRIPTION.LABEL',
+      placeholder: 'SEARCH.DESCRIPTION.PLACEHOLDER',
+    },
+    required: false,
+    initialValue: '',
+  } as Filter,
+
+  RATING: {
+    type: 'string',
+    label: 'rating',
+    key: FilterType.RATING,
+    inputType: InputType.slider,
+    filterKey: FilterKey.rating,
+    keyTranslate: {
+      label: 'SEARCH.RATING.LABEL',
+      placeholder: 'SEARCH.RATING.PLACEHOLDER',
+    },
+    required: false,
+    initialValue: '',
+  } as Filter,
+
   YEAR: {
     type: 'string',
     label: 'year',
     key: FilterType.YEAR,
-    inputType: InputType.input,
+    inputType: InputType.datePicker,
     filterKey: FilterKey.Year,
     keyTranslate: {
       label: 'SEARCH.YEAR.LABEL',
       placeholder: 'SEARCH.YEAR.PLACEHOLDER',
     },
     required: false,
+    initialValue: '',
   } as Filter,
   PLOT: {
     type: 'string',
@@ -92,6 +133,7 @@ export const FilterMode = {
       placeholder: 'SEARCH.PLOT.PLACEHOLDER',
     },
     required: false,
+    initialValue: '',
   } as Filter,
   MOVIE_TYPE: {
     type: 'string',
@@ -109,5 +151,6 @@ export const FilterMode = {
       placeholder: 'SEARCH.MOVIE_TYPE.PLACEHOLDER',
     },
     required: false,
+    initialValue: '',
   } as Filter,
 };

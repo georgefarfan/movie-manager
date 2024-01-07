@@ -14,6 +14,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - No data component
 - SnackBar message
 - Translate literals
+- header and manage datepicker
+- range slider
 
 ## [0.0.3] - 2024-01-05
 

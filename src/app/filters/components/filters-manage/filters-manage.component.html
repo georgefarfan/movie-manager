@@ -1,0 +1,22 @@
+<h1 mat-dialog-title>{{ "FILTERS.MANAGE.TITLE" | translate }}</h1>
+<div mat-dialog-content>
+  <form [formGroup]="form" class="d-flex-col">
+    @for (item of data.items; track item) {
+    <div [formGroupName]="item">
+      <mat-checkbox formControlName="show"
+        ><p class="f-20">
+          {{ form.get(item)?.value.data.keyTranslate.label | translate }}
+        </p></mat-checkbox
+      >
+    </div>
+    }
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button mat-dialog-close (click)="dialogRef.close()">
+    {{ "SHARED.CLOSE" | translate }}
+  </button>
+  <button mat-button mat-dialog-close cdkFocusInitial (click)="apply()">
+    {{ "SHARED.APPLY" | translate }}
+  </button>
+</div>
