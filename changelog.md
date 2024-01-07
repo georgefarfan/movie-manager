@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Glossary](#glossary)
 
+## [0.0.4] - 2024-01-07
+
+### Added
+
+- No data component
+- SnackBar message
+- Translate literals
+
 ## [0.0.3] - 2024-01-05
 
 ### Added

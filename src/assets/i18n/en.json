@@ -42,11 +42,20 @@
         "LABEL": "SEARCH"
     },
     "MOVIES": {
-        "NOT_DATA": "No results yet!"
+        "NOT_DATA": "No results yet!",
+        "ACTIONS": {
+            "ADD": "{{x}} added to favorites",
+            "REMOVED": "{{x}} removed"
+        }
     },
     "FAVORITES": {
         "UPDATE": {
             "TITLE": "Update favorite"
+        },
+        "ACTIONS": {
+            "ADD": "'{{x}}' added to favorites",
+            "UPDATED": "'{{x}}' updated",
+            "REMOVED": "'{{x}}' removed"
         }
     }
 }

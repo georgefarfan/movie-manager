@@ -28,6 +28,7 @@ export const moviesReducer = createReducer(
   // FAVORITES
 
   on(addFavorite, (state, { params }) => {
+    debugger;
     return {
       ...state,
       favorites: [...state.favorites, params],
@@ -37,6 +38,13 @@ export const moviesReducer = createReducer(
   on(successUpdateFavorites, (state, { data }) => {
     return {
       ...state,
+      data: state.data.reduce((accu: Movie[], curr: Movie) => {
+        accu.push({
+          ...curr,
+          favorite: data.find((f) => f.imdbID === curr.imdbID) ? true : false,
+        });
+        return accu;
+      }, []),
       favorites: data,
     };
   }),
@@ -57,7 +65,9 @@ export const moviesReducer = createReducer(
   }),
 
   on(updateMovie, (state, { data }) => {
-    const index = state.data.findIndex((item) => item.imdbID === data.imdbID);
+    const index: number = state.data.findIndex(
+      (item) => item.imdbID === data.imdbID
+    );
 
     const updatedItems = [...state.data];
     updatedItems[index] = {
@@ -65,7 +75,11 @@ export const moviesReducer = createReducer(
       favorite: !data.favorite,
     };
 
-    const favorites = updatedItems.filter((m) => m.favorite) as Favorite[];
+    let favorites: Favorite[] = state.favorites;
+
+    if (!state.favorites.find((f) => f.imdbID === data.imdbID)) {
+      favorites = [...state.favorites, data as Favorite];
+    }
 
     return {
       ...state,

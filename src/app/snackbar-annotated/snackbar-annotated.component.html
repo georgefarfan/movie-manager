@@ -1,0 +1,12 @@
+<div class="d-flex">
+  <span class="example-pizza-party" matSnackBarLabel> {{ data.text }} </span>
+  <span matSnackBarActions>
+    <button
+      mat-button
+      matSnackBarAction
+      (click)="snackBarRef.dismissWithAction()"
+    >
+      {{ "SHARED.OK" | translate }}
+    </button>
+  </span>
+</div>

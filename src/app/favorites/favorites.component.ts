@@ -4,7 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
-import { Favorite } from '../shared/models/favorites';
+import { ActionType, Favorite } from '../shared/models/favorites';
 import { selectFavorites } from '../store/movies.selector';
 import { CardItemComponent } from '../card-item/card-item.component';
 import { FiltersComponent } from '../filters/filters.component';
@@ -17,6 +17,7 @@ import {
 import { MatDialog } from '@angular/material/dialog';
 import { FavoriteDialogComponent } from '../favorite-dialog/favorite-dialog.component';
 import { TranslateModule } from '@ngx-translate/core';
+import { NoDataComponent } from '../no-data/no-data.component';
 
 const FAVORITE_FILTERS = [
   FilterMode.ID,
@@ -35,6 +36,7 @@ const FAVORITE_FILTERS = [
     CardItemComponent,
     FiltersComponent,
     TranslateModule,
+    NoDataComponent,
   ],
   template: ` <div>
     <app-filters [filters]="filters" (search)="search($event)"></app-filters>
@@ -49,7 +51,7 @@ const FAVORITE_FILTERS = [
         (click)="openDialog(favorite)"
       ></app-card-item>
       } @empty {
-      <p>{{ 'MOVIES.NOT_DATA' | translate }}</p>
+      <app-no-data [message]="'MOVIES.NOT_DATA'"></app-no-data>
       } }
     </div>
   </div>`,
@@ -77,7 +79,10 @@ export class FavoritesComponent implements OnInit {
   onRemove(favorite: Favorite): void {
     this.store.dispatch(
       deleteFavorite({
-        data: favorite,
+        params: {
+          action: ActionType.DELETE,
+          favorite,
+        },
       })
     );
   }
@@ -90,11 +95,16 @@ export class FavoritesComponent implements OnInit {
       },
     });
     dialog.afterClosed().subscribe((result) => {
-      this.store.dispatch(
-        updateFavorite({
-          data: result.data,
-        })
-      );
+      if (result) {
+        this.store.dispatch(
+          updateFavorite({
+            params: {
+              favorite: result.data,
+              action: ActionType.UPDATE,
+            },
+          })
+        );
+      }
     });
   }
 }

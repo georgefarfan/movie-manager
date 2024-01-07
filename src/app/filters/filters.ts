@@ -38,6 +38,7 @@ export interface Filter {
   };
   options?: SelectOption[];
   filterKey: FilterKey;
+  required: boolean;
 }
 
 export const FilterMode = {
@@ -51,6 +52,7 @@ export const FilterMode = {
       label: 'SEARCH.BY_ID.LABEL',
       placeholder: 'SEARCH.BY_ID.PLACEHOLDER',
     },
+    required: false,
   } as Filter,
   TITLE: {
     type: 'string',
@@ -62,6 +64,7 @@ export const FilterMode = {
       label: 'SEARCH.TITLE.LABEL',
       placeholder: 'SEARCH.TITLE.PLACEHOLDER',
     },
+    required: true,
   } as Filter,
   YEAR: {
     type: 'string',
@@ -73,6 +76,7 @@ export const FilterMode = {
       label: 'SEARCH.YEAR.LABEL',
       placeholder: 'SEARCH.YEAR.PLACEHOLDER',
     },
+    required: false,
   } as Filter,
   PLOT: {
     type: 'string',
@@ -87,6 +91,7 @@ export const FilterMode = {
       label: 'SEARCH.PLOT.LABEL',
       placeholder: 'SEARCH.PLOT.PLACEHOLDER',
     },
+    required: false,
   } as Filter,
   MOVIE_TYPE: {
     type: 'string',
@@ -103,5 +108,6 @@ export const FilterMode = {
       label: 'SEARCH.MOVIE_TYPE.LABEL',
       placeholder: 'SEARCH.MOVIE_TYPE.PLACEHOLDER',
     },
+    required: false,
   } as Filter,
 };

@@ -5,5 +5,7 @@
   [showFavorite]="true"
 ></app-card-item>
 } @empty {
-<p>{{ "MOVIES.NOT_DATA" | translate }}</p>
+<div class="mt-4">
+  <app-no-data [message]="'MOVIES.NOT_DATA'"></app-no-data>
+</div>
 } }

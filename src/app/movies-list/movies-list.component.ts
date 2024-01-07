@@ -8,11 +8,18 @@ import { selectMoviesData } from '../store/movies.selector';
 import { CardItemComponent } from '../card-item/card-item.component';
 import { updateMovie } from '../store/movies.actions';
 import { TranslateModule } from '@ngx-translate/core';
+import { NoDataComponent } from '../no-data/no-data.component';
 
 @Component({
   selector: 'app-movies-list',
   standalone: true,
-  imports: [CommonModule, MatCardModule, CardItemComponent, TranslateModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    NoDataComponent,
+    CardItemComponent,
+    TranslateModule,
+  ],
   templateUrl: './movies-list.component.html',
   styleUrl: './movies-list.component.scss',
 })

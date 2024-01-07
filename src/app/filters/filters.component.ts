@@ -12,6 +12,7 @@ import {
   FormGroup,
   FormsModule,
   ReactiveFormsModule,
+  Validators,
 } from '@angular/forms';
 import { Filter } from './filters';
 import { debounceTime } from 'rxjs';
@@ -84,6 +85,9 @@ export class FiltersComponent implements OnInit {
     let formInputs: any = {};
     this.filters.forEach((filter) => {
       formInputs[filter.key] = [''];
+      if (filter.required) {
+        formInputs[filter.key] = ['', Validators.required];
+      }
     });
     this.form = this.fb.group(formInputs);
   }

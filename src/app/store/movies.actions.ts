@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Favorite } from '../shared/models/favorites';
+import { Favorite, FavoriteParams } from '../shared/models/favorites';
 import { Movie } from '../shared/models/movie';
 
 // MOVIES
@@ -37,12 +37,12 @@ export const addFavorite = createAction(
 
 export const deleteFavorite = createAction(
   '[Favorites] delete',
-  props<{ data: Favorite }>()
+  props<{ params: FavoriteParams }>()
 );
 
 export const updateFavorite = createAction(
   '[Favorite] Update ',
-  props<{ data: Favorite }>()
+  props<{ params: FavoriteParams }>()
 );
 
 export const successUpdateFavorites = createAction(
