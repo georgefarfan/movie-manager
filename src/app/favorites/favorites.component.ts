@@ -44,7 +44,6 @@ const FAVORITE_FILTERS = [
   ],
   template: ` <div>
     <app-filters [filters]="filters" (search)="search($event)"></app-filters>
-
     <div>
       @if (favorites$ | async; as favorites) { @for (favorite of favorites;
       track favorite.imdbID) {

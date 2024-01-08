@@ -126,7 +126,6 @@ export class MoviesEffects {
                 return accu;
               }, []);
             }
-
             return actions.successUpdateFavorites({
               data,
             });

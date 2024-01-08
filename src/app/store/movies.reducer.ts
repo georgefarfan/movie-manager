@@ -11,12 +11,14 @@ import {
 import { Movie } from '../shared/models/movie';
 import { Favorite } from '../shared/models/favorites';
 import { LoadingState } from './call-state';
+import { Tag } from '../shared/models/tag';
 
 export interface MoviesState {
   params: string;
   data: Movie[];
   favorites: Favorite[];
   callState: LoadingState;
+  tags: Tag[];
 }
 
 export const initialState: MoviesState = {
@@ -24,6 +26,7 @@ export const initialState: MoviesState = {
   data: [],
   favorites: [],
   callState: LoadingState.INIT,
+  tags: [],
 };
 
 export const moviesReducer = createReducer(
@@ -37,12 +40,14 @@ export const moviesReducer = createReducer(
       callState: LoadingState.LOADING,
     };
   }),
+
   on(setParamsMovies, (state, { params }) => {
     return {
       ...state,
       params,
     };
   }),
+
   on(successMovies, (state, { data }) => {
     return {
       ...state,

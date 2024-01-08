@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit, inject } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import {
   FormBuilder,
@@ -44,6 +44,7 @@ export interface DialogData {
     MatFormFieldModule,
     MatInputModule,
     StarRatingComponent,
+    NgOptimizedImage,
   ],
   templateUrl: './favorite-dialog.component.html',
   styleUrl: './favorite-dialog.component.scss',

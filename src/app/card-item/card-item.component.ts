@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { FavoriteComponent } from '../favorite/favorite.component';
 import { MatCardModule } from '@angular/material/card';
 import { Favorite } from '../shared/models/favorites';
@@ -13,7 +13,13 @@ import { faTrash } from '@fortawesome/free-solid-svg-icons';
 @Component({
   selector: 'app-card-item',
   standalone: true,
-  imports: [CommonModule, MatCardModule, FavoriteComponent, FontAwesomeModule],
+  imports: [
+    CommonModule,
+    MatCardModule,
+    FavoriteComponent,
+    FontAwesomeModule,
+    NgOptimizedImage,
+  ],
   templateUrl: './card-item.component.html',
   styleUrl: './card-item.component.scss',
 })

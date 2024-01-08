@@ -1,5 +1,5 @@
 <div class="search-container mt-4 mb-4">
-  <form [formGroup]="form">
+  <form [formGroup]="form" (submit)="search.emit(paramsKey)">
     <div class="search-container__filters">
       @for (filter of filters; track filter.key) {
 
@@ -7,7 +7,7 @@
         @if (form.get(filter.key)?.value.show ) { @if (filter.inputType ===
         'input') {
 
-        <mat-form-field>
+        <mat-form-field class="w-100">
           <mat-label>{{ filter.keyTranslate.label | translate }}</mat-label>
           <input
             matInput
@@ -20,7 +20,7 @@
 
         } @if(filter.inputType === 'select') {
 
-        <mat-form-field>
+        <mat-form-field class="w-100">
           <mat-label>{{ filter.keyTranslate.label | translate }}</mat-label>
 
           <mat-select formControlName="value">
@@ -50,6 +50,10 @@
       }
     </div>
     <div class="d-flex justify-content-end">
+      <button mat-flat-button color="warn" class="mr-1" type="submit">
+        {{ "SEARCH.LABEL" | translate }}
+      </button>
+
       <button
         mat-flat-button
         class="mr-1"
@@ -59,12 +63,8 @@
         {{ "SHARED.SETTING" | translate }}
       </button>
 
-      <button mat-flat-button color="warn" class="mr-1" (click)="clear()">
+      <button mat-flat-button color="warn" (click)="clear()">
         {{ "SHARED.CLEAR" | translate }}
-      </button>
-
-      <button mat-flat-button color="warn" (click)="search.emit(paramsKey)">
-        {{ "SEARCH.LABEL" | translate }}
       </button>
     </div>
   </form>

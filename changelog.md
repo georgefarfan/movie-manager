@@ -7,6 +7,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Glossary](#glossary)
 
+## [0.0.5] - 2024-01-08
+
+### Added
+
+- Tags
+- Filters ordered
+
 ## [0.0.4] - 2024-01-07
 
 ### Change
