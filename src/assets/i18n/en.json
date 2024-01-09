@@ -18,6 +18,9 @@
             },
             "FAVORITES": {
                 "NAME": "Favorites"
+            },
+            "DATE_MANAGER": {
+                "NAME": "Date manager"
             }
         }
     },

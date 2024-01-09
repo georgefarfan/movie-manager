@@ -7,6 +7,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Glossary](#glossary)
 
+## [0.0.6] - 2024-01-09
+
+### Added
+
+- Date manager
+
 ## [0.0.5] - 2024-01-08
 
 ### Added

@@ -1,0 +1,16 @@
+<div class="d-flex-col grid-month-calendar">
+  <form [formGroup]="form" class="grid-month-calendar__container">
+    @for (month of months; track month) { @defer () {
+    <div [formGroupName]="month.date">
+      <mat-calendar
+        #calendar
+        [headerComponent]="headerDateManagerComponent"
+        [selected]="form.get(month.date)?.value.date"
+        (selectedChange)="form.get(month.date)?.get('date')?.setValue($event)"
+        [startAt]="month.initial"
+      >
+      </mat-calendar>
+    </div>
+    }}
+  </form>
+</div>

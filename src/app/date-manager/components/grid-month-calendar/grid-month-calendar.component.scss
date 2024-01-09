@@ -1,0 +1,7 @@
+.grid-month-calendar {
+  &__container {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: repeat(auto-fit, minmax(230px, 0.5fr));
+  }
+}
